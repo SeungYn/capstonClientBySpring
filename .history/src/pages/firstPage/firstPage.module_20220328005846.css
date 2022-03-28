@@ -1,0 +1,9 @@
+.container {
+  height: 100%;
+}
+
+.map_cantainer {
+  height: 100px;
+  width: 100px;
+  background-color: black;
+}

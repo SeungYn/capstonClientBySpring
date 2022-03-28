@@ -1,0 +1,10 @@
+.headers {
+  padding: 1rem 0.4rem;
+}
+
+.container {
+  display: flex;
+}
+.logo__title {
+  margin: 0;
+}
