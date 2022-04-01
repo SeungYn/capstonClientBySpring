@@ -1,0 +1,107 @@
+@value mainFontColor,buttonFontColor from '../../common/color.css';
+@value buttonBorderRadius from '../../common/size.css';
+
+.authTitle {
+  color: mainFontColor;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin: auto;
+}
+
+.authForm__itemList {
+  width: 100%;
+}
+
+.authForm__itemList > div:not(:first-child) {
+  margin-top: 0.8rem;
+}
+.authForm__item,
+.gender__container {
+  width: 100%;
+}
+
+.form_signup {
+  margin: 0.7rem 0;
+  cursor: pointer;
+}
+
+.auth_btn {
+  font-size: 1rem;
+  width: 100%;
+  padding: 0.6rem 0;
+  background-color: mainFontColor;
+  outline: none;
+  border: 1px solid mainFontColor;
+  border-radius: 0.3rem;
+  color: white;
+  cursor: pointer;
+}
+/* email part */
+.authForm__emailGroup {
+  width: 100%;
+}
+.emailGroup__top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.emailBtn {
+  border-radius: buttonBorderRadius;
+  background-color: white;
+  border: 2px solid mainFontColor;
+  width: 8rem;
+  height: 100%;
+  color: mainFontColor;
+  margin-left: 0.4rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.emailBtn:hover {
+  background-color: mainFontColor;
+  color: white;
+}
+
+.emailBtn:disabled {
+  color: rgb(180, 180, 180);
+  border: 2px solid rgb(180, 180, 180);
+  background-color: rgb(241, 241, 241);
+}
+
+/* 잰버 파트 */
+.gender__container {
+  color: mainFontColor;
+  align-items: center;
+}
+
+.groupItems {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.form_signup {
+  color: mainFontColor;
+}
+
+.sno_gender {
+  display: flex;
+  width: 100%;
+}
+
+.auth_btn:hover {
+}

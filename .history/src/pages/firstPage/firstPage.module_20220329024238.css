@@ -1,0 +1,25 @@
+.container {
+  height: 100%;
+}
+
+.map__group {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  border-bottom: 3px solid black;
+}
+
+.map_container {
+  height: 100%;
+  width: 100%;
+  resize: vertical;
+}
+
+/* 드레그 버튼 */
+.dragBtn {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  cursor: move;
+}

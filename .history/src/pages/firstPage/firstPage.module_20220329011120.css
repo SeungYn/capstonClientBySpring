@@ -1,0 +1,14 @@
+.container {
+  height: 100%;
+}
+
+.map__group {
+  height: 100%;
+  width: 100%;
+}
+
+.map_container {
+  height: 50%;
+  width: 100%;
+  resize: vertical;
+}
