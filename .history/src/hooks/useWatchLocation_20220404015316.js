@@ -46,11 +46,11 @@ const useWatchLocation = (options = {}) => {
       handleError,
       options
     );
-    console.log('asdasdas');
+    console.log(error);
     // Clear the location watch instance when React unmounts the used component
     return cancelLocationWatch;
   }, [options]);
-  console.log('asdasdas');
+
   return { location, cancelLocationWatch, error };
 };
 

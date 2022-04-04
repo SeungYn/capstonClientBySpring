@@ -148,10 +148,6 @@ const FirstPage = ({ kakao, kakaoService }) => {
       setPreMarker(marker);
       preMarker && preMarker.setMap(null);
     }
-
-    return () => {
-      cancelLocationWatch();
-    };
   }, [location]);
 
   // useEffect(() => {

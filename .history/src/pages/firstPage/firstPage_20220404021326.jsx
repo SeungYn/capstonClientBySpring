@@ -11,7 +11,7 @@ const FirstPage = ({ kakao, kakaoService }) => {
   //처음 접속했을때 위치를 담은 marker
   const [firstMarker, setFirstMarker] = useState(null);
   //실시간 위치추적시 이전에 있던 위치 marker
-  const [preMarker, setPreMarker] = useState(null);
+  const [preMarker, setPreMarker1] = useState(null);
   const [ttt11, setTtt11] = useState('');
   //현재 사용자 위치 추적
   const { location, cancelLocationWatch, error } =
@@ -138,21 +138,26 @@ const FirstPage = ({ kakao, kakaoService }) => {
       setFirstMarker(null);
     }
     if (location && mainMap) {
+      const mapContainer = mapRef.current;
+      const mapOption = kakaoService.getMapOption(
+        location.latitude,
+        location.longitude
+      );
+
       const markerPosition = kakaoService.getLatLng(
         location.latitude,
         location.longitude
       );
 
-      const marker = kakaoService.getMapMarker(markerPosition, mainMap);
-
-      setPreMarker(marker);
-      preMarker && preMarker.setMap(null);
+      console.log(location);
+      const marker1 = kakaoService.getMapMarker(markerPosition, mainMap);
+      console.log(marker1);
+      setFirstMarker(null);
+      setTtt11('1');
+      console.log(11);
     }
-
-    return () => {
-      cancelLocationWatch();
-    };
-  }, [location]);
+    console.log(123123);
+  }, [location, cancelLocationWatch]);
 
   // useEffect(() => {
   //   // if (!currentLocation) {
@@ -208,8 +213,9 @@ const FirstPage = ({ kakao, kakaoService }) => {
   return (
     <section className={styles.container}>
       <div ref={reizeContainerRef} className={styles.map__group}>
-        <div ref={mapRef} className={styles.map_container}></div>
-        <LoadingSpin loading={loading} />
+        <div ref={mapRef} className={styles.map_container}>
+          <LoadingSpin loading={loading} />
+        </div>
       </div>
       <section className={styles.dragContainer}>
         <div

@@ -92,7 +92,7 @@ const FirstPage = ({ kakao, kakaoService }) => {
       console.log(currentLocation);
       return;
     }
-    setLoading(false);
+    setLoading(true);
     const mapContainer = mapRef.current;
     const mapOption = kakaoService.getMapOption(37.1935, 127.022611);
     //메인지도
@@ -138,6 +138,12 @@ const FirstPage = ({ kakao, kakaoService }) => {
       setFirstMarker(null);
     }
     if (location && mainMap) {
+      const mapContainer = mapRef.current;
+      const mapOption = kakaoService.getMapOption(
+        location.latitude,
+        location.longitude
+      );
+
       const markerPosition = kakaoService.getLatLng(
         location.latitude,
         location.longitude
@@ -148,10 +154,7 @@ const FirstPage = ({ kakao, kakaoService }) => {
       setPreMarker(marker);
       preMarker && preMarker.setMap(null);
     }
-
-    return () => {
-      cancelLocationWatch();
-    };
+    console.log(123123);
   }, [location]);
 
   // useEffect(() => {

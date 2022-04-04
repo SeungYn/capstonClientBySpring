@@ -29,7 +29,7 @@
   animation: spin 2s linear infinite;
 }
 .loading_content {
-  margin: 0.5rem 0;
+  margin-top: 0.5rem;
   color: mainFontColor;
   font-weight: bold;
   font-size: 1.4rem;

@@ -10,9 +10,6 @@ const FirstPage = ({ kakao, kakaoService }) => {
     useCurrentLocation(geolocationOptions);
   //처음 접속했을때 위치를 담은 marker
   const [firstMarker, setFirstMarker] = useState(null);
-  //실시간 위치추적시 이전에 있던 위치 marker
-  const [preMarker, setPreMarker] = useState(null);
-  const [ttt11, setTtt11] = useState('');
   //현재 사용자 위치 추적
   const { location, cancelLocationWatch, error } =
     useWatchLocation(geolocationOptions);
@@ -97,7 +94,6 @@ const FirstPage = ({ kakao, kakaoService }) => {
     const mapOption = kakaoService.getMapOption(37.1935, 127.022611);
     //메인지도
     const map = kakaoService.getNewMap(mapContainer, mapOption);
-    setMainMap(map);
     const markerPosition = kakaoService.getLatLng(37.1935, 127.022611);
     const marker = kakaoService.getMapMarker(markerPosition, map);
     setFirstMarker(marker);
@@ -135,24 +131,21 @@ const FirstPage = ({ kakao, kakaoService }) => {
     if (firstMarker) {
       //기존마커 제거
       firstMarker.setMap(null);
-      setFirstMarker(null);
     }
     if (location && mainMap) {
+      const mapContainer = mapRef.current;
+      const mapOption = kakaoService.getMapOption(
+        location.latitude,
+        location.longitude
+      );
+      const map = kakaoService.getNewMap(mapContainer, mapOption);
       const markerPosition = kakaoService.getLatLng(
         location.latitude,
         location.longitude
       );
-
-      const marker = kakaoService.getMapMarker(markerPosition, mainMap);
-
-      setPreMarker(marker);
-      preMarker && preMarker.setMap(null);
+      const marker = kakaoService.getMapMarker(markerPosition, map);
     }
-
-    return () => {
-      cancelLocationWatch();
-    };
-  }, [location]);
+  }, [location, cancelLocationWatch, error]);
 
   // useEffect(() => {
   //   // if (!currentLocation) {
@@ -208,8 +201,9 @@ const FirstPage = ({ kakao, kakaoService }) => {
   return (
     <section className={styles.container}>
       <div ref={reizeContainerRef} className={styles.map__group}>
-        <div ref={mapRef} className={styles.map_container}></div>
-        <LoadingSpin loading={loading} />
+        <div ref={mapRef} className={styles.map_container}>
+          <LoadingSpin loading={loading} />
+        </div>
       </div>
       <section className={styles.dragContainer}>
         <div
