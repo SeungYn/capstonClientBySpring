@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './components/header/header';
 import FirstPage from './pages/firstPage/firstPage';
+import { BiHomeAlt } from 'react-icons/bi';
 import Footer from './components/common/footer/footer';
 function App({ kakao, kakaoService, partyService }) {
   return (
@@ -22,6 +23,7 @@ function App({ kakao, kakaoService, partyService }) {
         />
       </Routes>
       <Footer />
+      <BiHomeAlt color='blue' />
     </div>
   );
 }

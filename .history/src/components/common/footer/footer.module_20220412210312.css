@@ -1,0 +1,19 @@
+@value mainFontColor, unActivedColor from '../../../common/color.css';
+
+.actived {
+  color: mainFontColor;
+}
+
+.unActived {
+  color: unActivedColor;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+}
