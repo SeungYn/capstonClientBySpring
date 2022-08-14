@@ -1,0 +1,13 @@
+.myParty__peoples {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.myParty__peoples__people {
+  width: 50%;
+}
+
+.contents {
+  display: flex;
+  flex-direction: column;
+}

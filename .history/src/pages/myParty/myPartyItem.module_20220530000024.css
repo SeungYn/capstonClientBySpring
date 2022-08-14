@@ -1,0 +1,9 @@
+.myParty__peoples {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.contents {
+  display: flex;
+  flex-direction: column;
+}

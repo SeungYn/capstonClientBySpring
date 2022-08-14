@@ -1,0 +1,11 @@
+.myParty__container {
+  height: 100%;
+}
+
+.btnGroup {
+  display: flex;
+  justify-content: space-around;
+}
+
+.btnGroup__btn {
+}

@@ -1,0 +1,4 @@
+.myParty__peoples {
+  display: flex;
+  flex-direction: column;
+}
