@@ -1,9 +1,0 @@
-@value mainFontColor, unActivedColor from '../../../common/color.css';
-
-.test1 {
-  color: unActivedColor;
-}
-
-.test2 {
-  color: rgb(177, 177, 177);
-}

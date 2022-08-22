@@ -1,9 +1,0 @@
-@value mainFontColor from '../../../common/color.css';
-
-.test1 {
-  color: red;
-}
-
-.test2 {
-  color: blueviolet;
-}

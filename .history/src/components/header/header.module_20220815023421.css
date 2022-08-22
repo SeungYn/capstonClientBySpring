@@ -1,0 +1,14 @@
+@value mainFontColor, unActivedColor from '../../common/color.css';
+
+.headers {
+  padding: 0.5rem 0.4rem;
+  border-bottom: 1px solid mainFontColor;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+.logo__title {
+  margin: 0;
+}

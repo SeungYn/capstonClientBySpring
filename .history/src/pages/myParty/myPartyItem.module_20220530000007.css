@@ -1,9 +1,0 @@
-.myParty__peoples {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.myParty__peoples__people {
-  display: flex;
-  flex-direction: column;
-}
