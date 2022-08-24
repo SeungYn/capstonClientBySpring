@@ -71,9 +71,7 @@ const FirstPage = ({ kakao, kakaoService, partyService }) => {
 
   //파티 참가
   const onJoinParty = (partyId) => {
-    partyService
-      .partyJoin(partyId)
-      .then((party) => navigation('/myParty', { state: { party } })); //
+    partyService.partyJoin(partyId).then((party) => console.log(party)); //
   };
 
   //마커 클릭시 이벤트 함수

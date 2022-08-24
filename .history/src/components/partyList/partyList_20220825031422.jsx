@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './partyList.module.css';
 const PartyList = ({ partyList, onJoinParty }) => {
+  console.log(partyList.id);
   return (
     <ul className={styles.partyContainer}>
       {partyList.map((data) => {
@@ -8,7 +9,7 @@ const PartyList = ({ partyList, onJoinParty }) => {
           <li
             key={data.id}
             className={styles.partyItem}
-            onClick={() => onJoinParty(data.id)}
+            onClick={() => onJoinParty(partyList.id)}
           >
             <h3>{data.title}</h3>
             <p>식당 : {data.restaurantName}</p>

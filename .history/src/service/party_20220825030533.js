@@ -51,11 +51,10 @@ export default class PartyService {
   //파티참가하기
   //노드 /party/joinParty/:partyId
   async partyJoin(partyId) {
-    const data = await this.http.fetch(`/party/joinParty/${partyId}`, {
+    const data = await this.http.fetch(`/party/joinParty${partyId}`, {
       method: 'POST',
       headers: this.getHeaders(),
     });
-
     return data;
   }
 

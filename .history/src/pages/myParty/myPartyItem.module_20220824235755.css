@@ -19,22 +19,26 @@
 
 .myParty__peoples__people {
   height: 100%;
+  display: flex;
+  flex-direction: column;
 
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 1px 1px rgba(0, 0, 0, 0.23);
   padding-bottom: 0.2rem;
   flex-basis: 50%;
+  align-items: center;
 }
 
 .contents {
-  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
 .readyOn {
   background-color: rgb(207, 254, 207);
-
+  display: flex;
+  align-items: center;
   padding: 0px 0.3rem;
 }
 
@@ -56,7 +60,6 @@
 }
 
 .blank {
-  height: 100%;
   opacity: 0.1;
   display: flex;
   justify-content: center;

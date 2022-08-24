@@ -21,6 +21,7 @@
   border-radius: 10px;
   color: mainFontColor;
   width: 100%;
+  margin-bottom: 0.3rem;
 }
 
 .report {
@@ -45,6 +46,7 @@
 }
 
 .btnGroup__btn:first-child {
+  margin-right: 0.3rem;
 }
 /* 파티정보 */
 

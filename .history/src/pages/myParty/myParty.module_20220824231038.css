@@ -9,7 +9,6 @@
 .btnGroup {
   display: flex;
   flex-direction: column;
-  flex-basis: 5%;
 }
 
 .btnGroup__btn {
@@ -21,17 +20,11 @@
   border-radius: 10px;
   color: mainFontColor;
   width: 100%;
-}
-
-.report {
-  height: 100%;
-  flex-basis: 50%;
-  position: relative;
+  margin-bottom: 0.3rem;
 }
 
 .unReady__btn {
   height: 100%;
-  background-color: black;
 }
 
 .btnGroup__right {
@@ -45,19 +38,21 @@
 }
 
 .btnGroup__btn:first-child {
+  margin-right: 0.3rem;
 }
 /* 파티정보 */
 
 .myParty__middle {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   height: 100%;
+  margin: 0 0.2rem;
   margin-bottom: 0.5rem;
   align-items: center;
-  flex-basis: 20%;
 }
 
 .partyInfo {
+  height: 90%;
   border: 1px solid mainFontColor;
   padding: 0.2rem 0.5rem;
   display: flex;
@@ -65,8 +60,6 @@
   align-items: center;
   justify-content: center;
   flex-basis: 50%;
-  height: 100%;
-  border-radius: 10px;
 }
 
 .party__info {

@@ -1,15 +1,12 @@
 import React from 'react';
 import styles from './partyList.module.css';
-const PartyList = ({ partyList, onJoinParty }) => {
+const PartyList = ({ partyList }) => {
+  console.log(partyList);
   return (
     <ul className={styles.partyContainer}>
       {partyList.map((data) => {
         return (
-          <li
-            key={data.id}
-            className={styles.partyItem}
-            onClick={() => onJoinParty(data.id)}
-          >
+          <li key={data.id} className={styles.partyItem}>
             <h3>{data.title}</h3>
             <p>식당 : {data.restaurantName}</p>
             <p>

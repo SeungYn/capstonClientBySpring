@@ -9,7 +9,7 @@
 .btnGroup {
   display: flex;
   flex-direction: column;
-  flex-basis: 5%;
+  flex-basis: 10%;
 }
 
 .btnGroup__btn {
@@ -21,6 +21,7 @@
   border-radius: 10px;
   color: mainFontColor;
   width: 100%;
+  margin-bottom: 0.3rem;
 }
 
 .report {
@@ -45,6 +46,7 @@
 }
 
 .btnGroup__btn:first-child {
+  margin-right: 0.3rem;
 }
 /* 파티정보 */
 

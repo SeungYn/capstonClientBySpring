@@ -9,7 +9,6 @@ import PartyButton from '../../components/common/partyButton/partyButton';
 import { useNavigate } from 'react-router-dom';
 
 const FirstPage = ({ kakao, kakaoService, partyService }) => {
-  const navigation = useNavigate();
   //현재 사용자위치 1회성
   const { location: currentLocation, error: currentError } =
     useCurrentLocation(geolocationOptions);
@@ -70,10 +69,8 @@ const FirstPage = ({ kakao, kakaoService, partyService }) => {
   };
 
   //파티 참가
-  const onJoinParty = (partyId) => {
-    partyService
-      .partyJoin(partyId)
-      .then((party) => navigation('/myParty', { state: { party } })); //
+  const joinParty = (partyId) => {
+    partyService.partyJoin(partyId).then((party) => console.log(party)); //
   };
 
   //마커 클릭시 이벤트 함수
@@ -187,10 +184,7 @@ const FirstPage = ({ kakao, kakaoService, partyService }) => {
         ></div>
       </div>
 
-      <PartyList
-        partyList={clickedRestaurantsParties}
-        onJoinParty={onJoinParty}
-      />
+      <PartyList partyList={clickedRestaurantsParties} />
 
       <PartyButton
         onMakeParty={makeParty}
