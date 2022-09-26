@@ -1,0 +1,81 @@
+.myParty__container {
+  position: relative;
+}
+/* 사람들 배치 grid버젼 */
+.myParty__peoples__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, 1fr);
+  height: 100%;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+/* 사람들 배치 flex버젼 */
+.myParty__peoples__flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.myParty__peoples__people {
+  height: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 1px 1px rgba(0, 0, 0, 0.23);
+  padding-bottom: 0.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.contents {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.readyOn {
+  background-color: rgb(207, 254, 207);
+
+  padding: 0px 0.3rem;
+}
+
+.contents span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.readyOff {
+  opacity: 0;
+}
+
+.male {
+  color: blue;
+}
+.female {
+  color: red;
+}
+
+.blank {
+  height: 100%;
+  opacity: 0.1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 신고 강퇴 버튼 부분 */
+.BtnGroup {
+  display: flex;
+  justify-content: space-around;
+}
+.Btn {
+  flex-basis: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.reportBtn {
+  background-color: rgb(241, 211, 211);
+}
