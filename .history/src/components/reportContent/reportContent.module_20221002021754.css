@@ -1,0 +1,47 @@
+@value overBackgroundColor, mainFontColor from '../../common/color.css';
+
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 30;
+  background-color: overBackgroundColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reportList {
+  border: 1px solid mainFontColor;
+  border-radius: 1rem;
+  background-color: white;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.reportList li {
+  width: 100%;
+}
+
+.reportList__first {
+  flex-basis: 10%;
+}
+
+.reportList__second {
+  flex-basis: 45%;
+}
+
+.reportList__third {
+  flex-basis: 45%;
+}
+
+.reportList__item {
+  display: flex;
+}
+
+.reportList__item__p {
+  text-align: center;
+}

@@ -1,23 +1,47 @@
+import { Stomp } from '@stomp/stompjs';
 import socket from 'socket.io-client';
+import SockJS from 'sockjs-client';
 
 export default class Socket {
   constructor(baseURL, getAccessToken) {
-    this.baseURL = baseURL;
+    this.baseURL = baseURL + 'ws-stomp';
     this.getAccessToken = getAccessToken;
-    this.chatio = null;
+    this.sockjs = new SockJS(baseURL);
+    this.client = Stomp.over(this.sockjs);
+  }
 
-    this.io = socket(baseURL, {
-      auth: (cb) => cb({ token: getAccessToken() }),
-    });
-    console.log(
-      socket(baseURL, {
-        auth: { token: getAccessToken() },
-      })
-    );
-    this.io.on('connext_error', (err) => {
-      console.log('socket error', err.message);
-    });
-    console.log('socket class!!!!');
+  onConnect() {
+    if (!this.client.connected) {
+      this.client.connect(
+        {
+          Authorization: 'Bearer ' + this.getAccessToken,
+        },
+        () => {
+          console.log('서버와 연결되었습니다.');
+        },
+        () => {
+          console.log('서버와 연결이 안됩니다.');
+        }
+      );
+    }
+  }
+
+  onSubscribe(id, path, callback) {
+    let sub = null;
+    if (this.client.connected) {
+      sub = this.client.subscribe(`${path}${id}`, callback);
+    } else {
+      this.client.connect(
+        {
+          Authorization: 'Bearer ' + this.getAccessToken,
+        },
+        () => {
+          sub = this.client.subscribe(`${path}${id}`, callback);
+        }
+      );
+    }
+
+    return ()=> 
   }
 
   onSync(event, callback) {
