@@ -1,0 +1,15 @@
+@value mainFontColor, unActivedColor from '../../../common/color.css';
+
+footer {
+  /* position: sticky; */
+
+  padding: 0.2rem 0;
+}
+
+.actived {
+  color: mainFontColor;
+}
+
+.unActived {
+  color: unActivedColor;
+}
