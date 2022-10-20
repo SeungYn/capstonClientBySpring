@@ -1,0 +1,11 @@
+.container {
+  position: relative;
+}
+
+.inputForm {
+}
+.partyList1 {
+  height: 50%;
+  position: relative;
+  overflow-y: auto;
+}

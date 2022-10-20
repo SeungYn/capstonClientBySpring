@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+}
+
+.inputForm {
+}
+.partyList1 {
+  position: relative;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+}
