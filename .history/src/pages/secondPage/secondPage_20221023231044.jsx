@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Error from '../../components/error/error';
 import LoadingSpin from '../../components/loadingSpin/loadingSpin';
 import PartyList from '../../components/partyList/partyList';
 import { useAuth } from '../../context/AuthContext';
@@ -18,9 +17,6 @@ export default function SecondPage({ partyService }) {
   //무한스크롤
   const observer = useRef();
   const [hasMore, setHasMore] = useState({ all: false, search: false });
-  //파티 컴포넌트에서 스크롤 top 가져오는 ref
-  const partyItemScrollTopRef = useRef(null);
-  const [allPartyScrollTop, setAllPartyScrollTop] = useState(0);
 
   const handleJoin = (partyId, restaurantId) => {
     partyService
@@ -38,17 +34,9 @@ export default function SecondPage({ partyService }) {
     setSearchKeyword(input);
   };
 
-  //검색창에 focus가 됐을 때 글자가 없으면 스크롤 top 저장
   const handelerScrollHeightSave = (e) => {
-    if (searchKeyword === '') {
-      setAllPartyScrollTop((top) => partyItemScrollTopRef.current.scrollTop);
-    }
-  };
-
-  const handelerFocus = (e) => {
-    console.log(partyItemScrollTopRef.current.scrollTop);
-    handelerScrollHeightSave();
-  };
+    console.log(e)
+  }
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -90,7 +78,7 @@ export default function SecondPage({ partyService }) {
             });
           } else if (partyType === 'search' && hasMore.search) {
             console.log('search');
-
+            console.log(offset.search);
             partyService
               .searchParties(offset.search, searchKeyword)
               .then((data) => {
@@ -117,24 +105,9 @@ export default function SecondPage({ partyService }) {
     node && observer.current.observe(node);
   };
 
-  // useEffect(() => {
-  //   if (partyItemScrollTopRef.current) {
-  //     console.log(partyItemScrollTopRef.current);
-  //     console.log(partyItemScrollTopRef.current.scrollTop);
-  //     partyItemScrollTopRef.current.scrollTop = '100px';
-  //   }
-  //   return () => {
-  //     setAllPartyScrollTop((e) => 0);
-  //   };
-  // }, [parties]);
-
   useEffect(() => {
     if (searchKeyword === '') {
-      console.log('ssss');
       setSearchParties([]);
-      console.log(allPartyScrollTop);
-      partyItemScrollTopRef.current.scrollTop = allPartyScrollTop;
-
       return;
     }
 
@@ -166,6 +139,7 @@ export default function SecondPage({ partyService }) {
     partyService
       .getAllParties(0)
       .then((data) => {
+        console.log(data);
         setParties([...data.parties]);
         setHasMore((has) => ({ ...has, all: true }));
         setOffset((offsets) => ({ ...offsets, all: data.parties.length }));
@@ -177,7 +151,6 @@ export default function SecondPage({ partyService }) {
 
     return () => {
       console.log('두번째 페이지 종료');
-      setAllPartyScrollTop(0);
     };
   }, [partyService]);
 
@@ -187,9 +160,6 @@ export default function SecondPage({ partyService }) {
 
   return (
     <section className={styles.container}>
-      {userContext.error && (
-        <Error error={userContext.error} onError={userContext.setError} />
-      )}
       <form className={styles.inputForm}>
         <input
           type='text'
@@ -197,17 +167,15 @@ export default function SecondPage({ partyService }) {
           value={searchKeyword}
           onChange={handlerChange}
           className={styles.inputText}
-          onFocus={handelerScrollHeightSave}
         />
       </form>
-      <section className={styles.partyList1}>
+      <section className={styles.partyList1} onScroll={(e) => console.log(e)}>
         <PartyList
           partyList={searchKeyword ? searchParties : parties}
           partyType={searchKeyword ? 'search' : 'all'}
           onJoinParty={handleJoin}
           lastListElement={lastListElement}
-          onScrollSave={handelerScrollHeightSave}
-          ref={partyItemScrollTopRef}
+          onScrollSave = 
         />
       </section>
     </section>

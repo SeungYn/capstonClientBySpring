@@ -37,7 +37,7 @@ const PartyList = forwardRef(
               </li>
             );
           })}
-        {partyList.length === 0 && <li>'검색결과가 없습니다.'</li>}
+        {partyList.length === 0 && <li>'검색결과없다씨발아'</li>}
       </ul>
     );
   }

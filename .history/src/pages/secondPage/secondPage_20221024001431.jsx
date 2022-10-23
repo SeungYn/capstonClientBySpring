@@ -187,9 +187,7 @@ export default function SecondPage({ partyService }) {
 
   return (
     <section className={styles.container}>
-      {userContext.error && (
-        <Error error={userContext.error} onError={userContext.setError} />
-      )}
+      {userContext.error && <Error />}
       <form className={styles.inputForm}>
         <input
           type='text'

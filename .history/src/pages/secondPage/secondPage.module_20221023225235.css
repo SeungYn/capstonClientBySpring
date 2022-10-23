@@ -1,0 +1,13 @@
+.container {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputForm {
+}
+.partyList1 {
+  flex: 0 0 auto;
+  height: 30%;
+}

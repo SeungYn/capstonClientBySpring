@@ -182,7 +182,7 @@ const MyParty = ({ partyService }) => {
       {party && (
         <div className={styles.myParty__middle}>
           <ul className={styles.partyInfo}>
-            <h3 className={styles.party__info}>파티 정보</h3>
+            <h2 className={styles.party__info}>파티 정보</h2>
             <li className={styles.partyInfo__title}>제목 : {party.title}</li>
             {/* <li className={styles.partyInfo__resTitle}>{party.</li>
         <li className={styles.partyInfo__address}></li> */}

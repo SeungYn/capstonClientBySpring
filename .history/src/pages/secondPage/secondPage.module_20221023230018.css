@@ -6,17 +6,13 @@
   overflow: hidden;
 }
 
-.inputText {
-  outline: none;
-  width: 100%;
-  font-size: 1.2rem;
-  font-weight: bold;
+.inputForm {
 }
 .partyList1 {
   flex: 1 1 auto;
   height: 80%;
   min-height: 0;
-
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 }

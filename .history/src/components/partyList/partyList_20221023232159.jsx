@@ -8,11 +8,15 @@ const PartyList = forwardRef(
     ref
   ) => {
     console.log('PartyList.jsx');
-
+    console.log(partyList);
+    console.log(lastListElement);
     //상위 컴포넌트에게 현재 파티 스크롤위치 저장
 
     return (
-      <ul className={styles.partyContainer} ref={ref}>
+      <ul
+        className={styles.partyContainer}
+        onScroll={onScrollSave && onScrollSave}
+      >
         {partyList &&
           partyList.map((data, index) => {
             return (
@@ -37,7 +41,7 @@ const PartyList = forwardRef(
               </li>
             );
           })}
-        {partyList.length === 0 && <li>'검색결과가 없습니다.'</li>}
+        {partyList.length === 0 && <li>'검색결과없다씨발아'</li>}
       </ul>
     );
   }

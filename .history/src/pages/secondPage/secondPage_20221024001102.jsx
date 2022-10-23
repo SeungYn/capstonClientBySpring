@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Error from '../../components/error/error';
 import LoadingSpin from '../../components/loadingSpin/loadingSpin';
 import PartyList from '../../components/partyList/partyList';
 import { useAuth } from '../../context/AuthContext';
@@ -166,6 +165,7 @@ export default function SecondPage({ partyService }) {
     partyService
       .getAllParties(0)
       .then((data) => {
+        console.log(data);
         setParties([...data.parties]);
         setHasMore((has) => ({ ...has, all: true }));
         setOffset((offsets) => ({ ...offsets, all: data.parties.length }));
@@ -187,9 +187,6 @@ export default function SecondPage({ partyService }) {
 
   return (
     <section className={styles.container}>
-      {userContext.error && (
-        <Error error={userContext.error} onError={userContext.setError} />
-      )}
       <form className={styles.inputForm}>
         <input
           type='text'

@@ -6,11 +6,8 @@
   overflow: hidden;
 }
 
-.inputText {
-  outline: none;
-  width: 100%;
-  font-size: 1.2rem;
-  font-weight: bold;
+.inputForm {
+  border-inline: none;
 }
 .partyList1 {
   flex: 1 1 auto;
