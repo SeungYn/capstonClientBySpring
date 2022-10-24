@@ -1,0 +1,23 @@
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 30%;
+}
+
+.container > * {
+  transform: translateY(-50%);
+}
+.info {
+  border: 1px solid black;
+  width: 100%;
+  text-align: center;
+  padding: 0.4rem 0;
+}
+
+.logout {
+  width: 100%;
+}
