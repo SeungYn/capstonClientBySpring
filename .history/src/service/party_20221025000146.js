@@ -28,7 +28,7 @@ export default class PartyService {
   //유저 신고사유보기
   async reportContent(resId, partyId, memberId) {
     const data = await this.http.fetch(
-      `/user/restaurant/${resId}/party/${partyId}/reports?memberId=${memberId}`,
+      `/user/restaurant/${resId}/party/${partyId}/reports?memberid=${memberId}`,
       {
         method: 'GET',
         headers: this.getHeaders(),
@@ -67,10 +67,13 @@ export default class PartyService {
 
   //파티 삭제하기
   async deleteParty(restaurantId, partyId) {
-    await this.http.fetch(`/user/restaurant/${restaurantId}/party/${partyId}`, {
-      method: 'DELETE',
-      headers: this.getHeaders(),
-    });
+    const data = await this.http.fetch(
+      `/user/restaurant/${restaurantId}/party/${partyId}`,
+      {
+        method: 'DELETE',
+        headers: this.getHeaders(),
+      }
+    );
   }
 
   //파티 나가기

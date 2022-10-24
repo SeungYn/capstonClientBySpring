@@ -15,23 +15,24 @@ export default class PartyService {
   //키워드로 파티 목록 조회
   async searchParties(offset, keyword) {
     console.log('------offset------', offset);
-    const data = await this.http.fetch(
-      `/user/party/search?keyword=${keyword}&offset=${offset}`,
-      {
-        method: 'GET',
-        headers: this.getHeaders(),
-      }
-    );
+    const data = await this.http.fetch(`/user/party/search`, {
+      method: 'POST',
+      headers: this.getHeaders(),
+      body: JSON.stringify({ offset, keyword }),
+    });
     return data;
   }
 
   //유저 신고사유보기
   async reportContent(resId, partyId, memberId) {
     const data = await this.http.fetch(
-      `/user/restaurant/${resId}/party/${partyId}/reports?memberId=${memberId}`,
+      `/user/restaurant/${resId}/party/${partyId}/reports`,
       {
         method: 'GET',
         headers: this.getHeaders(),
+        body: JSON.stringify({
+          memberId,
+        }),
       }
     );
     return data;
@@ -54,23 +55,29 @@ export default class PartyService {
 
   //파티 신고하기
   async reportParty(resId, partyId, targetId, reportType, description) {
-    await this.http.fetch(`/user/restaurant/${resId}/party/${partyId}/report`, {
-      method: 'POST',
-      headers: this.getHeaders(),
-      body: JSON.stringify({
-        memberId: targetId,
-        reportType,
-        description,
-      }),
-    });
+    const data = await this.http.fetch(
+      `/user/restaurant/${resId}/party/${partyId}/report`,
+      {
+        method: 'POST',
+        headers: this.getHeaders(),
+        body: JSON.stringify({
+          memberId: targetId,
+          reportType,
+          description,
+        }),
+      }
+    );
   }
 
   //파티 삭제하기
   async deleteParty(restaurantId, partyId) {
-    await this.http.fetch(`/user/restaurant/${restaurantId}/party/${partyId}`, {
-      method: 'DELETE',
-      headers: this.getHeaders(),
-    });
+    const data = await this.http.fetch(
+      `/user/restaurant/${restaurantId}/party/${partyId}`,
+      {
+        method: 'DELETE',
+        headers: this.getHeaders(),
+      }
+    );
   }
 
   //파티 나가기

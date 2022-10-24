@@ -17,10 +17,13 @@ export default class ChatService {
     console.log('채팅패티--', partyId, restaurantId, offset);
 
     const data = await this.http.fetch(
-      `/user/restaurant/${restaurantId}/party/${partyId}/chat?offset=${offset}`,
+      `/user/restaurant/${restaurantId}/party/${partyId}/chat`,
       {
-        method: 'GET',
+        method: 'POST',
         headers: this.getHeaders(),
+        body: JSON.stringify({
+          offset,
+        }),
       }
     );
     return data;

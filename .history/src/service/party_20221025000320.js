@@ -3,12 +3,85 @@ export default class PartyService {
     this.http = http;
     this.tokenStorage = tokenStorage;
   }
-
-  async outParty(partyId) {
-    const data = await this.http.fetch(`/party/${partyId}/exit`, {
-      method: 'POST',
+  //모든 파티 가져오기
+  async getAllParties(offset) {
+    const data = await this.http.fetch(`/user/parties?offset=${offset}`, {
+      method: 'GET',
       headers: this.getHeaders(),
     });
+    return data;
+  }
+
+  //키워드로 파티 목록 조회
+  async searchParties(offset, keyword) {
+    console.log('------offset------', offset);
+    const data = await this.http.fetch(
+      `/user/party/search?keyword=${keyword}&offset=${offset}`,
+      {
+        method: 'GET',
+        headers: this.getHeaders(),
+      }
+    );
+    return data;
+  }
+
+  //유저 신고사유보기
+  async reportContent(resId, partyId, memberId) {
+    const data = await this.http.fetch(
+      `/user/restaurant/${resId}/party/${partyId}/reports?memberId=${memberId}`,
+      {
+        method: 'GET',
+        headers: this.getHeaders(),
+      }
+    );
+    return data;
+  }
+
+  //파티 강퇴하기
+  async kickParty(restaurantId, partyId, memberId) {
+    const data = await this.http.fetch(
+      `/user/restaurant/${restaurantId}/party/${partyId}/kick-out`,
+      {
+        method: 'POST',
+        headers: this.getHeaders(),
+        body: JSON.stringify({
+          memberId,
+        }),
+      }
+    );
+    return data;
+  }
+
+  //파티 신고하기
+  async reportParty(resId, partyId, targetId, reportType, description) {
+    await this.http.fetch(`/user/restaurant/${resId}/party/${partyId}/report`, {
+      method: 'POST',
+      headers: this.getHeaders(),
+      body: JSON.stringify({
+        memberId: targetId,
+        reportType,
+        description,
+      }),
+    });
+  }
+
+  //파티 삭제하기
+  async deleteParty(restaurantId, partyId) {
+    await this.http.fetch(`/user/restaurant/${restaurantId}/party/${partyId}`, {
+      method: 'DELETE',
+      headers: this.getHeaders(),
+    });
+  }
+
+  //파티 나가기
+  async outParty(restaurantId, partyId) {
+    const data = await this.http.fetch(
+      `/user/restaurant/${restaurantId}/party/${partyId}/exit`,
+      {
+        method: 'POST',
+        headers: this.getHeaders(),
+      }
+    );
 
     return data;
   }
@@ -28,11 +101,15 @@ export default class PartyService {
 
   //준비하기
   //노드 /auth/partyReady
-  async partyReady() {
-    const data = await this.http.fetch(`/auth/partyReady`, {
-      method: 'POST',
-      headers: this.getHeaders(),
-    });
+  async partyReady(restaurantId, partyId) {
+    console.log(this.getHeaders());
+    const data = await this.http.fetch(
+      `/user/restaurant/${restaurantId}/party/${partyId}/ready`,
+      {
+        method: 'POST',
+        headers: this.getHeaders(),
+      }
+    );
     return data;
   }
 
