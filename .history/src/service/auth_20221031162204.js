@@ -15,21 +15,11 @@ export default class AuthService {
 
   //노드 /signup
   //스프링 /join
-  async signup({
-    nickname,
-    loginId,
-    password,
-    email,
-    sex,
-    university,
-    dept,
-    sno,
-  }) {
-    console.log(nickname, loginId, password, email, sex, university, dept, sno);
+  async signup(nickname, loginId, password, email, sex, university, dept, sno) {
     const data = await this.http.fetchText('/join', {
       method: 'POST',
       body: JSON.stringify({
-        nickname: nickname,
+        nickname,
         password,
         loginId,
         email,
@@ -112,14 +102,6 @@ export default class AuthService {
     return data;
   }
 
-  async nicknameDuplicateVerification(nickname) {
-    const data = await this.http.fetch(`/duplicate-nickname`, {
-      method: 'POST',
-      body: JSON.stringify({ nickname }),
-    });
-    return data;
-  }
-
   //이메일로 인증번호 받기
   // async emailVerification(email) {
   //   console.log(email);
@@ -134,7 +116,7 @@ export default class AuthService {
   // }
   async getEmailAuthenticationNumber(email) {
     console.log(email);
-    const data = await this.http.fetch('/mail-auth', {
+    const data = await this.http.fetch('/auth/mail-auth', {
       method: 'POST',
       body: JSON.stringify({
         email,

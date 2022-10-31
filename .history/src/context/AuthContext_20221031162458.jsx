@@ -69,7 +69,7 @@ export function AuthProvider({ authService, authErrorEventBus, children }) {
   const logIn = useCallback(
     async ({ loginId, password }) => {
       authService
-        .headerTokenLogin(loginId, password)
+        .headerTokenLogin(nickname, password)
         .then((data) => {
           console.log(data);
           setUser(data.memberId);

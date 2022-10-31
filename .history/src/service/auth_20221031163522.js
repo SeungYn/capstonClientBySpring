@@ -29,7 +29,7 @@ export default class AuthService {
     const data = await this.http.fetchText('/join', {
       method: 'POST',
       body: JSON.stringify({
-        nickname: nickname,
+        nickName: nickname,
         password,
         loginId,
         email,

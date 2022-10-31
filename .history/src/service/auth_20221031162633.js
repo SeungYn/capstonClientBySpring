@@ -15,21 +15,11 @@ export default class AuthService {
 
   //노드 /signup
   //스프링 /join
-  async signup({
-    nickname,
-    loginId,
-    password,
-    email,
-    sex,
-    university,
-    dept,
-    sno,
-  }) {
-    console.log(nickname, loginId, password, email, sex, university, dept, sno);
+  async signup(nickname, loginId, password, email, sex, university, dept, sno) {
     const data = await this.http.fetchText('/join', {
       method: 'POST',
       body: JSON.stringify({
-        nickname: nickname,
+        nickname,
         password,
         loginId,
         email,

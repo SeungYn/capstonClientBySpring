@@ -16,7 +16,7 @@ const { kakao } = window;
 const baseURL = 'https://9a33973e5c081a.lhr.life'; //process.env.REACT_APP_BASE_URL; //http://192.168.219.102:8080'; //'http://localhost:8080';
 const tokenStorage = new TokenStorage();
 const authErrorEventBus = new AuthErrorEventBus();
-const httpClient = new HttpClient(baseURL, authErrorEventBus, tokenStorage);
+const httpClient = new HttpClient(baseURL, authErrorEventBus);
 const authService = new AuthService(httpClient, tokenStorage);
 const stompClient = new StompDI(baseURL, () => tokenStorage.getToken());
 const kakaoService = new KakaoService(httpClient, tokenStorage, kakao);
