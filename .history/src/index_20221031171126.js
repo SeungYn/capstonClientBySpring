@@ -13,7 +13,7 @@ import StompDI from './network/stomp';
 import ChatService from './service/chat';
 
 const { kakao } = window;
-const baseURL = 'https://2e9fb6909c9043.lhr.life'; //process.env.REACT_APP_BASE_URL; //http://192.168.219.102:8080'; //'http://localhost:8080';
+const baseURL = 'https://9a33973e5c081a.lhr.life'; //process.env.REACT_APP_BASE_URL; //http://192.168.219.102:8080'; //'http://localhost:8080';
 const tokenStorage = new TokenStorage();
 const authErrorEventBus = new AuthErrorEventBus();
 const httpClient = new HttpClient(baseURL, authErrorEventBus, tokenStorage);
