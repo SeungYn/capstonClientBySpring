@@ -84,13 +84,21 @@ const MyParty = ({ partyService }) => {
       .partyReady(party.restaurantId, party.id)
       .then((data) => {
         console.log(data);
-        const me = data.members.find((member) => member.id == user);
+
+        const me = data.members.find((member) => {
+          console.log(member.id == user.memberId, '비교');
+          console.log(member.id);
+          return member.id == user.memberId;
+        });
         if (!me.owner) {
           setReady(me.ready);
         }
         setParty({ ...data });
       })
-      .catch(setError);
+      .catch((e) => {
+        console.log(e);
+        setError(e);
+      });
   }, [partyService, party]);
 
   const outParty = () => {
@@ -115,9 +123,11 @@ const MyParty = ({ partyService }) => {
         }
         if (mount) {
           // 컴포넌트가 Unmount가 됐을 때 mount가 false로 바뀜 그러면 setState를 못쓰게해서 업데이트 되지 않도록 함
-          const me = data.members.find((item) => item.id == user);
+          const me = data.members.find(
+            (item) => item.nickname == user.nickname
+          );
           console.log(user);
-          console.log(me);
+          console.log(me, 'me');
           me.owner && setMaster(true);
           me.ready && setReady(true);
           setParty({ ...data });
@@ -125,7 +135,7 @@ const MyParty = ({ partyService }) => {
       })
       .catch((error) => {
         console.log(error);
-        return nav('/partyEmpty');
+        //return nav('/partyEmpty');
       });
     return () => {
       mount = false;
@@ -134,7 +144,6 @@ const MyParty = ({ partyService }) => {
 
   return (
     <section className={styles.myParty__container}>
-      {error && <Error error={error} onError={setError} />}
       {reportContentSwitch && (
         <ReportContent
           setSwitch={setReportContentSwitch}
@@ -159,6 +168,7 @@ const MyParty = ({ partyService }) => {
           onReport={onReport}
         />
       )}
+
       {party && (
         <MyPartyItem
           onReady={onReady}
@@ -177,7 +187,7 @@ const MyParty = ({ partyService }) => {
       {party && (
         <div className={styles.myParty__middle}>
           <ul className={styles.partyInfo}>
-            <h2 className={styles.party__info}>Info</h2>
+            <h3 className={styles.party__info}>파티 정보</h3>
             <li className={styles.partyInfo__title}>제목 : {party.title}</li>
             {/* <li className={styles.partyInfo__resTitle}>{party.</li>
         <li className={styles.partyInfo__address}></li> */}
@@ -185,7 +195,7 @@ const MyParty = ({ partyService }) => {
               방장 :{' '}
               {party.members.map((i) => {
                 if (i.owner == true) {
-                  return i.nickName;
+                  return i.nickname;
                 }
               })}
             </li>
@@ -213,7 +223,6 @@ const MyParty = ({ partyService }) => {
           </div>
         </div>
       )}
-
       <div className={styles.btnGroup}>
         <div className={styles.btnGroup__right}>
           <button className={styles.btnGroup__btn} onClick={onChat}>

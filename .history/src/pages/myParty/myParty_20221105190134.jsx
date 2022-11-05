@@ -123,9 +123,7 @@ const MyParty = ({ partyService }) => {
         }
         if (mount) {
           // 컴포넌트가 Unmount가 됐을 때 mount가 false로 바뀜 그러면 setState를 못쓰게해서 업데이트 되지 않도록 함
-          const me = data.members.find(
-            (item) => item.nickname == user.nickname
-          );
+          const me = data.members.find((item) => item.id == user.nickname);
           console.log(user);
           console.log(me, 'me');
           me.owner && setMaster(true);
