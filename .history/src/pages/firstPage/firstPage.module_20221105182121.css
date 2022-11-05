@@ -1,0 +1,62 @@
+@value mainFontColor from '../../common/color.css';
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+}
+
+.map__group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  width: 100%;
+  max-height: 50%;
+  min-height: 30%;
+  border-bottom: 2px solid mainFontColor;
+}
+
+.map_container {
+  height: 100%;
+  width: 100%;
+  resize: vertical;
+}
+
+.clickedRes {
+  margin: 0;
+  padding: 0.4rem 0;
+  font-size: var(--font-size-medium);
+  color: mainFontColor;
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid mainFontColor;
+}
+/* 드레그 버튼 */
+.dragContainer {
+  display: flex;
+  position: relative;
+}
+
+.dragBtn {
+  z-index: 10;
+  width: 2rem;
+  height: 0.8rem;
+  background-color: mainFontColor;
+  border-radius: 2rem;
+  position: absolute;
+  transform: translate(-50%, -50%);
+
+  cursor: move;
+}
+
+.notClickEvent {
+  position: absolute;
+  z-index: 10;
+}
+
+/* 파티리스트부분 */

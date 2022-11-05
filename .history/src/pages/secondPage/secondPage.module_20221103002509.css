@@ -1,0 +1,24 @@
+@value mainFontColor from '../../common/color.css';
+
+.container {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputText {
+  outline: none;
+  width: 100%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: mainFontColor 1px solid;
+}
+.partyList1 {
+  flex: 1 1 auto;
+  height: 80%;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+}
