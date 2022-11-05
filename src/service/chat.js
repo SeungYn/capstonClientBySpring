@@ -63,6 +63,7 @@ export default class ChatService {
   }
 
   onSend(path, data) {
+    console.log(data, '전송');
     this.stomp.onSend(path, data);
   }
   // onConnectChat(partyId) {

@@ -219,6 +219,17 @@ const Chat = ({ chatService, kakaoService }) => {
     inputRef.current.focus();
   };
 
+  const stompPosSendToServer = (e) => {
+    e.preventDefault();
+    const position = {
+      roomId: 42,
+      nickName: '2',
+      latitude: 37.1926783,
+      longitude: 127.0271609,
+    };
+    chatService.onSend('/pub/party/position', position);
+  };
+
   //socket으로 닉네임이랑 위치를 받아옴
   const movePosition = useCallback(
     (posSocketData, flag) => {
@@ -263,12 +274,10 @@ const Chat = ({ chatService, kakaoService }) => {
   );
 
   useEffect(() => {
-    let partyId = null;
     chatService
       .getMyParty()
       .then((party) => {
         console.log(party);
-        partyId = party.id;
         setParty({ ...party });
       })
       .then(setError);
@@ -288,7 +297,6 @@ const Chat = ({ chatService, kakaoService }) => {
     return () => {
       chatService.onDisConnect();
       setConnectFlag(false);
-
       console.log('-------연결종료-------');
     };
   }, [chatService]);
@@ -362,14 +370,6 @@ const Chat = ({ chatService, kakaoService }) => {
     );
 
     return () => {
-      const nullPosition = {
-        roomId: party.chatRoom_id,
-        nickname: user.nickname,
-        latitude: null,
-        longitude: null,
-      };
-      console.log('----종료---');
-      chatService.onSend('/pub/party/position', nullPosition);
       subPosDisconnected();
       flag = false;
     };
@@ -448,15 +448,6 @@ const Chat = ({ chatService, kakaoService }) => {
     console.log(agreeAlert);
     if (mapSwitch) mainMap.relayout();
   }, [mapSwitch]);
-
-  useEffect(() => {
-    return () => {
-      if (connectFlag) {
-        console.log('연결0---------0종료');
-        chatService.onDisConnect();
-      }
-    };
-  }, [connectFlag]);
   return (
     <section className={styles.container}>
       {agreeAlert && (

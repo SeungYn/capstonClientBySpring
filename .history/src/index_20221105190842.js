@@ -11,6 +11,8 @@ import KakaoService from './service/kakao';
 import PartyService from './service/party';
 import StompDI from './network/stomp';
 import ChatService from './service/chat';
+import { TransitionGroup } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 
 const { kakao } = window;
 const baseURL = 'https://0cd39426f8b307.lhr.life'; //process.env.REACT_APP_BASE_URL; //http://192.168.219.102:8080'; //'http://localhost:8080';
@@ -25,7 +27,7 @@ const chatService = new ChatService(httpClient, tokenStorage, stompClient);
 
 console.log('index');
 ReactDOM.render(
-  <BrowserRouter basename='/capstonClientBySpring'>
+  <BrowserRouter basename=''>
     <AuthProvider
       authService={authService}
       authErrorEventBus={authErrorEventBus}

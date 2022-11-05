@@ -362,14 +362,6 @@ const Chat = ({ chatService, kakaoService }) => {
     );
 
     return () => {
-      const nullPosition = {
-        roomId: party.chatRoom_id,
-        nickname: user.nickname,
-        latitude: null,
-        longitude: null,
-      };
-      console.log('----종료---');
-      chatService.onSend('/pub/party/position', nullPosition);
       subPosDisconnected();
       flag = false;
     };

@@ -12,12 +12,17 @@ export default class ChatService {
     });
     return data;
   }
+  //http://localhost:8080/user/restaurant/6/party/43/chat
+  async getChats(partyId, restaurantId, offset) {
+    console.log('채팅패티--', partyId, restaurantId, offset);
 
-  async getChats(partyId) {
-    const data = await this.http.fetch(`/chat/${partyId}`, {
-      method: 'GET',
-      headers: this.getHeaders(),
-    });
+    const data = await this.http.fetch(
+      `/user/restaurant/${restaurantId}/party/${partyId}/chat?offset=${offset}`,
+      {
+        method: 'GET',
+        headers: this.getHeaders(),
+      }
+    );
     return data;
   }
 
@@ -58,6 +63,7 @@ export default class ChatService {
   }
 
   onSend(path, data) {
+    console.log(data, '전송');
     this.stomp.onSend(path, data);
   }
   // onConnectChat(partyId) {
