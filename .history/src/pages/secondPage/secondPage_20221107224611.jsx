@@ -71,7 +71,9 @@ export default function SecondPage({ partyService }) {
     observer.current && observer.current.disconnect();
     observer.current = new IntersectionObserver(
       (entries) => {
+        console.log(entries);
         if (entries[0].isIntersecting) {
+          console.log('마지막 리스트 ');
           if (partyType === 'all' && hasMore.all) {
             partyService.getAllParties(offset.all).then((data) => {
               const { parties } = data;
@@ -87,9 +89,12 @@ export default function SecondPage({ partyService }) {
               }
             });
           } else if (partyType === 'search' && hasMore.search) {
+            console.log('search');
+
             partyService
               .searchParties(offset.search, searchKeyword)
               .then((data) => {
+                console.log(data);
                 const { parties } = data;
                 if (data.parties.length > 0) {
                   setSearchParties((p) => [...p, ...parties]);

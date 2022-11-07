@@ -88,10 +88,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  border: 1px solid mainFontColor;
-  border-radius: 10px;
-  color: mainFontColor;
 }
 @media screen and (max-height: 915px) {
   .party__info {

@@ -2,7 +2,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './myParty.module.css';
 import MyPartyItem from './myPartyItem';
+import { GiSiren } from 'react-icons/gi';
 import { useAuth } from '../../context/AuthContext';
+import Error from '../../components/error/error';
 import KickAlert from '../../components/kickAlert/kickAlert';
 import ReportModal from '../../components/reportModal/reportModal';
 import ReportContent from '../../components/reportContent/reportContent';
@@ -202,7 +204,7 @@ const MyParty = ({ partyService }) => {
                 {master ? '시작하기' : ready ? '준비해제' : '준비하기'}
               </button>
             ) : (
-              <div className={styles.start}>방이 시작되었습니다.</div>
+              '방이 시작되었습니다.'
             )}
           </div>
         </div>

@@ -5,6 +5,7 @@ export default class StompDI {
   constructor(baseURL, getAccessToken) {
     this.baseURL = baseURL + '/ws-stomp';
     this.getAccessToken = getAccessToken;
+    console.log(this.baseURL, '클래스 url');
     this.sockjs = null;
     this.client = null;
 

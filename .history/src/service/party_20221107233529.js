@@ -161,7 +161,7 @@ export default class PartyService {
         }),
       }
     );
-
+    console.log('party222', data);
     return data;
   }
 

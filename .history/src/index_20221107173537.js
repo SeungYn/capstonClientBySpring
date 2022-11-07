@@ -6,14 +6,14 @@ import TokenStorage from './db/token';
 import HttpClient from './network/http';
 import { AuthErrorEventBus, AuthProvider } from './context/AuthContext';
 import AuthService from './service/auth';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, useLocation } from 'react-router-dom';
 import KakaoService from './service/kakao';
 import PartyService from './service/party';
 import StompDI from './network/stomp';
 import ChatService from './service/chat';
 
 const { kakao } = window;
-const baseURL = 'https://f1af53dc7bd2db.lhr.life'; //process.env.REACT_APP_BASE_URL; //http://192.168.219.102:8080'; //'http://localhost:8080';
+const baseURL = 'https://296f3a57a0cb73.lhr.life'; //process.env.REACT_APP_BASE_URL; //http://192.168.219.102:8080'; //'http://localhost:8080';
 const tokenStorage = new TokenStorage();
 const authErrorEventBus = new AuthErrorEventBus();
 const httpClient = new HttpClient(baseURL, authErrorEventBus, tokenStorage);

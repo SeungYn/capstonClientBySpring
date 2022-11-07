@@ -34,7 +34,7 @@ const PartyMakerPage = ({
   };
 
   const makeParty = (e) => {
-    e.preventDefault();
+    e.preventDefalut();
     if (inputTitle === '') {
       onError('지점을 선택하세요');
       return;
@@ -45,7 +45,7 @@ const PartyMakerPage = ({
       })
       .catch((error) => {
         onActivate(activate);
-        return onError('지점을 선택해 주세요');
+        return onError(error);
       }); //
 
     setInputTitle('');

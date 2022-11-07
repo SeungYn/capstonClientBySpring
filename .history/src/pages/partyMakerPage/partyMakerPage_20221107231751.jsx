@@ -45,7 +45,7 @@ const PartyMakerPage = ({
       })
       .catch((error) => {
         onActivate(activate);
-        return onError('지점을 선택해 주세요');
+        return onError('지점을 선택햊 주세요');
       }); //
 
     setInputTitle('');

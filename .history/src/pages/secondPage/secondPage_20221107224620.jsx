@@ -87,9 +87,12 @@ export default function SecondPage({ partyService }) {
               }
             });
           } else if (partyType === 'search' && hasMore.search) {
+            console.log('search');
+
             partyService
               .searchParties(offset.search, searchKeyword)
               .then((data) => {
+                console.log(data);
                 const { parties } = data;
                 if (data.parties.length > 0) {
                   setSearchParties((p) => [...p, ...parties]);

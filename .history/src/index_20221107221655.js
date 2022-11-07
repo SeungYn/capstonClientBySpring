@@ -6,7 +6,7 @@ import TokenStorage from './db/token';
 import HttpClient from './network/http';
 import { AuthErrorEventBus, AuthProvider } from './context/AuthContext';
 import AuthService from './service/auth';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, useLocation } from 'react-router-dom';
 import KakaoService from './service/kakao';
 import PartyService from './service/party';
 import StompDI from './network/stomp';
