@@ -27,7 +27,7 @@ const MyParty = ({ partyService }) => {
   const [clickedId, setClickedId] = useState({});
 
   const onChat = () => {
-    navigation(`/chat`);
+    navigation(`/chat/${party.id}`);
   };
 
   //강퇴하기

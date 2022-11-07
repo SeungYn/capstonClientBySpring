@@ -161,7 +161,6 @@ export function AuthProvider({
             onAuthenticationNumberVerification={
               authenticationNumberVerification
             }
-            setError={setError}
           />
         </div>
       )}

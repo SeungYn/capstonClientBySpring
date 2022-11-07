@@ -24,7 +24,7 @@ export function AuthProvider({
   children,
   tokenStorage,
 }) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(1);
   const [error, setError] = useState(null);
   const [userId, setUserId] = useState('');
   const [userNickName, setUserNickName] = useState(undefined);

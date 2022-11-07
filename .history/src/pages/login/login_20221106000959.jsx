@@ -13,7 +13,7 @@ import { InputAdornment } from '@mui/material';
 import { Button } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 
-export default function Login({ authService, onLogin, setError }) {
+export default function Login({ authService, onLogin }) {
   const [signup, setSignup] = useState(false);
   const [signForm, setSignForm] = useState({ ...initiallzationSignForm });
   const [loginId, setLoginId] = useState('');
@@ -97,22 +97,19 @@ export default function Login({ authService, onLogin, setError }) {
   const submit = (e) => {
     e.preventDefault();
     if (signup) {
-      const { duplicateError, passwordVerificationError, nickDuplicateError } =
-        verificationError;
+      const {
+        loginIdError,
+        duplicateError,
+        passwordVerificationError,
+        nickDuplicateError,
+      } = verificationError;
       if (
+        loginIdError ||
         duplicateError ||
         passwordVerificationError ||
         !authenticationNumberVerification ||
         nickDuplicateError
       ) {
-        if (duplicateError) setError({ message: '아이디가 중복되었습니다.' });
-        else if (passwordVerificationError)
-          setError({ message: '비밀번호 확인 바랍니다.' });
-        else if (!authenticationNumberVerification)
-          setError({ message: '인증번호 인증을 받아야합니다.' });
-        else if (nickDuplicateError)
-          setError({ message: '닉네임이 중복되었습니다.' });
-
         return;
       } else {
         setSignForm({ ...initiallzationSignForm });

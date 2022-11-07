@@ -37,6 +37,7 @@ export default class StompDI {
       },
       (s) => {
         console.log('서버와 연결되었습니다.');
+
         callback();
       },
       (e) => {

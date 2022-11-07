@@ -110,10 +110,6 @@ export default function Login({ authService, onLogin, setError }) {
           setError({ message: '비밀번호 확인 바랍니다.' });
         else if (!authenticationNumberVerification)
           setError({ message: '인증번호 인증을 받아야합니다.' });
-        else if (nickDuplicateError)
-          setError({ message: '닉네임이 중복되었습니다.' });
-
-        return;
       } else {
         setSignForm({ ...initiallzationSignForm });
         authService.signup(signForm).then(console.log);

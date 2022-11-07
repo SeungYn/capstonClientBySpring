@@ -1,0 +1,46 @@
+@value mainFontColor from '../../common/color.css';
+
+.loading_on {
+  display: flex;
+}
+
+.loading_off {
+  display: none;
+}
+
+.container {
+  position: absolute;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(128, 128, 128, 0.5);
+  top: 0;
+  z-index: 100;
+}
+
+.loading {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  border: 3px solid white;
+  border-top: 3px solid mainFontColor;
+  animation: spin 2s linear infinite;
+}
+.loading_content {
+  margin: 0.5rem 0;
+  color: mainFontColor;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

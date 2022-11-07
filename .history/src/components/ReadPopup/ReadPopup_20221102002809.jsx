@@ -7,6 +7,8 @@ import styles from './ReadPopup.module.css';
  * @returns
  */
 export default function ReadPopup({ content, onHandler, type }) {
+  console.log(type);
+  console.log(content.message);
   return (
     <div className={styles.container}>
       <div className={styles.error__form}>
