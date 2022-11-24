@@ -1,0 +1,14 @@
+@value mainFontColor from '../../../common/color.css';
+
+.partyBtn {
+  position: absolute;
+  border: none;
+  background: mainFontColor;
+  color: white;
+  padding: 0.4rem 0.6rem;
+  border-radius: 1rem;
+  font-weight: bold;
+  bottom: 0.2rem;
+  cursor: pointer;
+  margin: 20%;
+}

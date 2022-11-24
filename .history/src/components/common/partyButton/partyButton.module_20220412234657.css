@@ -1,6 +1,0 @@
-@value mainFontColor from '../../../common/color.css';
-
-.partyBtn {
-  border: none;
-  background: mainFontColor;
-}
