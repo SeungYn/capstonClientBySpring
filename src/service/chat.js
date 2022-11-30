@@ -38,6 +38,10 @@ export default class ChatService {
     this.stomp.onConnect(callback);
   }
 
+  async onConnectPromise() {
+    return await this.stomp.onConnectPromise();
+  }
+
   onDisConnect() {
     console.log('종료밖');
     return this.stomp.onDisConnect();

@@ -52,9 +52,9 @@
 .chats__mychat .chats__chat {
   background-color: #6fbbf7;
 }
-.chats__time {
+/* .chats__time {
   background-color: black;
-}
+} */
 
 .nickname {
   margin-top: 0.6rem;

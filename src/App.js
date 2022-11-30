@@ -14,6 +14,7 @@ import MyInfo from './pages/myInfo/MyInfo';
 import ReadPopup from './components/ReadPopup/ReadPopup';
 import { TransitionGroup } from 'react-transition-group';
 import { CSSTransition } from 'react-transition-group';
+import NewChat from './pages/NewChat/NewChat';
 
 function App({ kakao, kakaoService, partyService, chatService, authService }) {
   const { user, logout, error, setError } = useAuth();
@@ -59,6 +60,16 @@ function App({ kakao, kakaoService, partyService, chatService, authService }) {
               path='/chat'
               element={
                 <Chat chatService={chatService} kakaoService={kakaoService} />
+              }
+            />
+            <Route
+              exact
+              path='/newChat'
+              element={
+                <NewChat
+                  chatService={chatService}
+                  kakaoService={kakaoService}
+                />
               }
             />
             <Route

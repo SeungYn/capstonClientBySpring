@@ -9,13 +9,30 @@ import { geolocationOptions } from '../../constants/geolocationOptions';
 import MapAgreeAlert from '../../components/mapAgreeAlert/mapAgreeAlert';
 import { IconContext } from 'react-icons';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 
 const NewChat = ({ chatService, kakaoService }) => {
   const [inputText, setInputText] = useState('');
   const [myName, setMyName] = useState('');
   const [chats, setChats] = useState([]);
   const [partyid, setPartyid] = useState();
-  const [party, setParty] = useState(undefined);
+  //const [party, setParty] = useState(undefined);
+  const {
+    error: e1,
+    isLoading,
+    data: party,
+  } = useQuery(
+    ['party'],
+    () => {
+      return chatService.getMyParty().then((d) => {
+        console.log(d);
+        return d;
+      });
+    },
+    {
+      staleTime: 1000 * 60,
+    }
+  );
   const { user, setError, userNickName } = useAuth();
   const { location, firstLocation, cancelLocationWatch, error } =
     useWatchLocation(geolocationOptions);
@@ -155,47 +172,53 @@ const NewChat = ({ chatService, kakaoService }) => {
   );
 
   useEffect(() => {
-    let partyId = null;
-    let chatRoom_id = null;
-    chatService
-      .getMyParty()
-      .then((party) => {
-        partyId = party.id;
-        chatRoom_id = party.chatRoom_id;
-        setParty({ ...party });
-      })
-      .catch((e) => {
-        setError(e);
-        return navigate('/');
-      });
-
     //연결상태 확인해서 connectFlag를 true로 해줌
-    if (chatService.connectState()) {
-      return setConnectFlag(true);
+    // if (chatService.connectState()) {
+    //   return setConnectFlag(true);
+    // }
+    if (!party) {
+      console.log('파티가 없습니다.');
+      return;
     }
+    let subChatDisconnected = () => {};
+    let subPosDisconnected = () => {};
+    console.log('partyId', party.chatRoom_id);
 
-    chatService.onConnect(() => {
-      setConnectFlag(() => {
-        console.log('연결플래그가 변경되었습니다.');
-        return true;
-      });
+    chatService.onConnectPromise().then((data) => {
+      console.log(data);
+      subChatDisconnected = chatService.onSubscribe(
+        party.chatRoom_id,
+        '/sub/chat/',
+        (e) => {
+          const chat = JSON.parse(e.body);
+          onCreated(chat);
+        }
+      );
+      subPosDisconnected = chatService.onSubscribe(
+        party.chatRoom_id,
+        '/sub/position/',
+        (e) => {
+          const pos = JSON.parse(e.body);
+          movePosition(pos, true);
+        }
+      );
     });
 
     return () => {
       if (chatService.connectState()) {
         const nullPosition = {
-          roomId: chatRoom_id,
+          roomId: party.chatRoom_id,
           nickname: user.nickname,
           latitude: null,
           longitude: null,
         };
         chatService.onSend('/pub/party/position', nullPosition);
       }
-
+      subChatDisconnected();
+      subPosDisconnected();
       chatService.onDisConnect();
-      setConnectFlag(false);
     };
-  }, [chatService]);
+  }, [chatService, party]);
 
   useEffect(() => {
     //채팅 가져오기
@@ -212,53 +235,6 @@ const NewChat = ({ chatService, kakaoService }) => {
         .catch((e) => {});
     }
   }, [chatService, party]);
-
-  useEffect(() => {
-    //연결상태 확인해서 구독
-
-    let subChatDisconnected = () => {};
-
-    if (connectFlag && party && chatService.connectState() === true) {
-      subChatDisconnected = chatService.onSubscribe(
-        party.chatRoom_id,
-        '/sub/chat/',
-        (e) => {
-          const chat = JSON.parse(e.body);
-
-          onCreated(chat);
-        }
-      );
-    }
-
-    return () => {
-      subChatDisconnected();
-    };
-  }, [chatService, connectFlag, party]);
-
-  useEffect(() => {
-    //위치 구독
-    let flag = true;
-    let subPosDisconnected = () => {};
-    if (!connectFlag || !party || !agree || !mainMap) {
-      return;
-    }
-
-    subPosDisconnected = chatService.onSubscribe(
-      party.chatRoom_id,
-      '/sub/position/',
-      (e) => {
-        const pos = JSON.parse(e.body);
-        movePosition(pos, flag);
-      }
-    );
-    setPosSubscribeFlag(true);
-
-    return () => {
-      setPosSubscribeFlag(false);
-      subPosDisconnected();
-      flag = false;
-    };
-  }, [chatService, connectFlag, party, agree, mainMap]);
 
   //지도와 실시간 위치
   useEffect(() => {
@@ -293,14 +269,7 @@ const NewChat = ({ chatService, kakaoService }) => {
   useEffect(() => {
     let flag = true;
 
-    if (
-      !party ||
-      !mapSwitch ||
-      !flag ||
-      !mainMap ||
-      !connectFlag ||
-      !location
-    ) {
+    if (!party || !mapSwitch || !mainMap || !location) {
       //if (!location) setError('위치 정보 제공에 동의해 주세요');
       return;
     }
@@ -335,13 +304,6 @@ const NewChat = ({ chatService, kakaoService }) => {
     if (mapSwitch) mainMap && mainMap.relayout();
   }, [mapSwitch]);
 
-  useEffect(() => {
-    return () => {
-      if (connectFlag) {
-        chatService.onDisConnect();
-      }
-    };
-  }, [connectFlag]);
   return (
     <section className={styles.container}>
       {agreeAlert && (

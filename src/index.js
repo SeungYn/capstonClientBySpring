@@ -11,6 +11,7 @@ import KakaoService from './service/kakao';
 import PartyService from './service/party';
 import StompDI from './network/stomp';
 import ChatService from './service/chat';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const { kakao } = window;
 const baseURL = process.env.REACT_APP_BASE_URL; //process.env.REACT_APP_BASE_URL; //process.env.REACT_APP_BASE_URL;  //'http://localhost:8080';
@@ -23,22 +24,25 @@ const kakaoService = new KakaoService(httpClient, tokenStorage, kakao);
 const partyService = new PartyService(httpClient, tokenStorage);
 const chatService = new ChatService(httpClient, tokenStorage, stompClient);
 
+const queryClient = new QueryClient();
 console.log('index');
 ReactDOM.render(
   <BrowserRouter basename='/capstonClientBySpring'>
-    <AuthProvider
-      authService={authService}
-      authErrorEventBus={authErrorEventBus}
-      tokenStorage={tokenStorage}
-    >
-      <App
-        kakao={kakao}
-        kakaoService={kakaoService}
-        partyService={partyService}
-        chatService={chatService}
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider
         authService={authService}
-      />
-    </AuthProvider>
+        authErrorEventBus={authErrorEventBus}
+        tokenStorage={tokenStorage}
+      >
+        <App
+          kakao={kakao}
+          kakaoService={kakaoService}
+          partyService={partyService}
+          chatService={chatService}
+          authService={authService}
+        />
+      </AuthProvider>
+    </QueryClientProvider>
   </BrowserRouter>,
 
   document.getElementById('root')

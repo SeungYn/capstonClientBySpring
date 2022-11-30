@@ -20,6 +20,26 @@ export default class StompDI {
     return this.client ? this.client.connected : false;
   }
 
+  onConnectPromise() {
+    this.sockjs = new SockJS(this.baseURL);
+    this.client = Stomp.over(this.sockjs);
+    return new Promise((resolve, reject) => {
+      this.client.connect(
+        {
+          Authorization: 'Bearer ' + this.getAccessToken(),
+        },
+        (s) => {
+          console.log('서버와 연결되었습니다.');
+          resolve(true);
+        },
+        (e) => {
+          console.log('서버와 연결이 안됩니다.');
+          reject(false);
+        }
+      );
+    });
+  }
+
   onConnect(callback) {
     // this.sockjs = new SockJS(this.baseURL);
     // this.client = Stomp.over(this.sockjs);
