@@ -93,27 +93,4 @@ export default class StompDI {
       JSON.stringify(data)
     );
   }
-
-  onSync(event, callback) {
-    if (!this.io.connected) {
-      this.io.connect();
-    }
-
-    this.io.on(event, (message) => callback(message));
-    return () => this.io.off(event);
-  }
-
-  onSyncChat(event, callback) {
-    //이것때문에 계속 재연결;;
-    // if (!this.chatio.connected) {
-    //   this.chatio.connect();
-    //   console.log('connect재연결');
-    // }
-
-    this.chatio.on(event, (message) => callback(message));
-    return () => {
-      console.log(event, '제거');
-      return this.chatio.off(event);
-    };
-  }
 }
