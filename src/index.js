@@ -12,12 +12,13 @@ import PartyService from './service/party';
 import StompDI from './network/stomp';
 import ChatService from './service/chat';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import HttpClientAxios from './network/httpAxios';
 
 const { kakao } = window;
 const baseURL = process.env.REACT_APP_BASE_URL; //process.env.REACT_APP_BASE_URL; //process.env.REACT_APP_BASE_URL;  //'http://localhost:8080';
 const tokenStorage = new TokenStorage();
 const authErrorEventBus = new AuthErrorEventBus();
-const httpClient = new HttpClient(baseURL, authErrorEventBus, tokenStorage);
+const httpClient = new HttpClientAxios(baseURL);
 const authService = new AuthService(httpClient, tokenStorage);
 const stompClient = new StompDI(baseURL, () => tokenStorage.getToken());
 const kakaoService = new KakaoService(httpClient, tokenStorage, kakao);

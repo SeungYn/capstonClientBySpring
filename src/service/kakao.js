@@ -55,7 +55,8 @@ export default class KakaoService {
   }
 
   //커스텀 마커
-  getMarkerImage(imageSrc, imageSize) {
+  getMarkerImage(imageSrc, width, height) {
+    const imageSize = this.getMarkerImageSize(width, height);
     return new this.kakao.maps.MarkerImage(imageSrc, imageSize);
   }
 

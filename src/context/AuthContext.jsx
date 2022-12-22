@@ -29,7 +29,6 @@ export function AuthProvider({
   const [userId, setUserId] = useState('');
   const [userNickName, setUserNickName] = useState(undefined);
   const nav = useNavigate();
-  console.log('auth');
   useImperativeHandle(contextRef, () => (user ? user.token : undefined));
 
   useEffect(() => {
@@ -117,6 +116,7 @@ export function AuthProvider({
     const data = await authService
       .getMyInfo()
       .then((data) => {
+        console.log(data);
         return data;
       })
       .catch((error) => {

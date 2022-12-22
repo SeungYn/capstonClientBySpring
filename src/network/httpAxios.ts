@@ -1,5 +1,5 @@
 import customStorage from '../db/StorageType';
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosError } from 'axios';
 
 export interface ErrorEventBus {
   listen(callback: () => void): void;
@@ -20,7 +20,7 @@ export type HttpOptions = {
   method: Method;
 };
 
-export default class HttpClient {
+export default class HttpClientAxios {
   private client: AxiosInstance;
   constructor(
     private baseURL: string //private authErrorEventBus: ErrorEventBusConstructor, //private storage: storageConstructor
@@ -45,11 +45,19 @@ export default class HttpClient {
     try {
       const res = await this.client(request);
       console.log(res);
+      if (res.headers.authorization) {
+        console.log('헤더에 토큰을 받아옴');
+        localStorage.setItem('token', res.headers.authorization.split(' ')[1]);
+      }
+      return res.data;
     } catch (err) {
-      if (err.response) {
-        const data = err.response.data;
+      if (err instanceof AxiosError) {
+        console.log(err);
+        if (err.response!.status === 401) localStorage.clear();
+        const data = err.response!.data;
         const message =
           data && data.message ? data.message : 'Something went wrong! 🤪';
+
         throw new Error(message);
       }
       throw new Error('connection error');

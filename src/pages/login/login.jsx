@@ -99,12 +99,7 @@ export default function Login({ authService, onLogin, setError }) {
     if (signup) {
       const { duplicateError, passwordVerificationError, nickDuplicateError } =
         verificationError;
-      console.log(
-        duplicateError,
-        passwordVerificationError,
-        nickDuplicateError,
-        authenticationNumberVerification
-      );
+
       if (
         duplicateError ||
         passwordVerificationError ||
