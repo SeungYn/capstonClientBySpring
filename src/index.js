@@ -15,10 +15,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import HttpClientAxios from './network/httpAxios';
 
 const { kakao } = window;
-const baseURL = process.env.REACT_APP_BASE_URL; //process.env.REACT_APP_BASE_URL; //process.env.REACT_APP_BASE_URL;  //'http://localhost:8080';
+const baseURL = 'https://dd290981c7fc4b.lhr.life'; //process.env.REACT_APP_BASE_URL; //process.env.REACT_APP_BASE_URL; //process.env.REACT_APP_BASE_URL;  //'http://localhost:8080';
 const tokenStorage = new TokenStorage();
 const authErrorEventBus = new AuthErrorEventBus();
-const httpClient = new HttpClientAxios(baseURL);
+const httpClient = new HttpClient(baseURL);
 const authService = new AuthService(httpClient, tokenStorage);
 const stompClient = new StompDI(baseURL, () => tokenStorage.getToken());
 const kakaoService = new KakaoService(httpClient, tokenStorage, kakao);
