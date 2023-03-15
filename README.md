@@ -6,16 +6,16 @@
 
 <a href='https://seungyn.github.io/capstonIntroPage/'>혼밥메이트 소개페이지 링크</a>
 
+# 배포링크
+
+<a href='https://seungyn.github.io/capstonIntroPage/'>혼밥메이트 링크</a>
+
 # 역할
 
 <pre>
 frontend: <a href='https://github.com/SeungYn'>유승윤</a>
 backend: <a href='https://github.com/YoonTaeminnnn'>유명수</a>, <a href='https://github.com/YoonTaeminnnn'>윤태민</a>
 </pre>
-
-# 시스템 설계
-
-<img src='https://user-images.githubusercontent.com/66045666/223048889-dcada919-8a4a-4c21-8418-fc37fa45560f.png' width='100%'/>
 
 # 기능
 
